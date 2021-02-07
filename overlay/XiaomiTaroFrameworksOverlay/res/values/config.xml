@@ -370,4 +370,7 @@
     <!-- The default vibration strength, must be between 1 and 255 inclusive. -->
     <integer name="config_defaultVibrationAmplitude">128</integer>
 
+    <!-- If not zero, limits the internal screen recorder's framerate to the set value. -->
+    <integer name="config_screenRecorderMaxFramerate">120</integer>
+
 </resources>

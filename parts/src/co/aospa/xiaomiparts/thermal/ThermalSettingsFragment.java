@@ -111,7 +111,7 @@ public class ThermalSettingsFragment extends PreferenceFragment
         boolean perfModeOn = PerfModeUtils.getInstance(getActivity()).isPerformanceModeOn();
         boolean enabled = mThermalUtils.isEnabled() && !perfModeOn;
         mPerfModeFooter.setVisible(perfModeOn);
-        mMainSwitch.setEnabled(enabled);
+        mMainSwitch.setEnabled(!perfModeOn);
         mAppsRecyclerView.setVisibility(enabled ? View.VISIBLE : View.GONE);
     }
 

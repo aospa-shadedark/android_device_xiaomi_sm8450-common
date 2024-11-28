@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.os.Process;
 import android.os.ServiceManager;
 import android.os.SystemProperties;
@@ -32,10 +33,13 @@ public class PerfModeUtils {
     private static final String PERF_SERVICE_BINDER_NAME = "vendor.perfservice";
     private static final int PERFORMANCE_MODE_BOOST_ID = 0x00001091;
     private static final int NOTIFICATION_ID = 0;
+    protected static final String ACTION_DISABLE_PERF_MODE =
+            "co.aospa.xiaomiparts.ACTION_DISABLE_PERF_MODE";
 
     private static PerfModeUtils sInstance;
     private final Context mContext;
     private final SharedPreferences mSharedPrefs;
+    private final PowerManager mPowerManager;
     private final NotificationManager mNotificationManager;
     private Notification mNotification;
 
@@ -64,13 +68,20 @@ public class PerfModeUtils {
         mNotificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
         setupNotification();
+
+        mPowerManager = context.getSystemService(PowerManager.class);
     }
 
     private void setupNotification() {
-        final Intent intent = new Intent(Intent.ACTION_POWER_USAGE_SUMMARY)
+        final Intent mainIntent = new Intent(Intent.ACTION_POWER_USAGE_SUMMARY)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        final PendingIntent pendingIntent = PendingIntent.getActivity(
-                mContext, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        final PendingIntent mainPendingIntent = PendingIntent.getActivity(
+                mContext, 0, mainIntent, PendingIntent.FLAG_IMMUTABLE);
+
+        final Intent disableIntent = new Intent(ACTION_DISABLE_PERF_MODE)
+                .setPackage(mContext.getPackageName());
+        final PendingIntent disablePendingIntent = PendingIntent.getBroadcast(
+                mContext, 0, disableIntent, PendingIntent.FLAG_IMMUTABLE);
 
         final NotificationChannel channel = new NotificationChannel(TAG /* channel id */,
                 mContext.getText(R.string.perf_mode_title),
@@ -78,11 +89,16 @@ public class PerfModeUtils {
         channel.setBlockable(true);
         mNotificationManager.createNotificationChannel(channel);
 
+        final Notification.Action disableAction = new Notification.Action.Builder(
+                0, mContext.getText(R.string.perf_mode_turn_off), disablePendingIntent)
+                .build();
+
         mNotification = new Notification.Builder(mContext, TAG /* channel id */)
                 .setContentTitle(mContext.getText(R.string.perf_mode_title))
                 .setContentText(mContext.getText(R.string.perf_mode_notification))
                 .setSmallIcon(R.drawable.speed_24px)
-                .setContentIntent(pendingIntent)
+                .setContentIntent(mainPendingIntent)
+                .addAction(disableAction)
                 .setOngoing(true)
                 .setFlag(Notification.FLAG_NO_CLEAR, true)
                 .build();
@@ -90,10 +106,11 @@ public class PerfModeUtils {
 
 
     public void onBootCompleted() {
-        if (isPerformanceModeOn()) {
+        if (isPerformanceModeOn() && !mPowerManager.isPowerSaveMode()) {
             dlog("boot completed, performance mode is enabled");
             turnOnPerformanceMode();
         }
+        PerfModeService.startService(mContext);
     }
 
     public Boolean isPerformanceModeOn() {
@@ -102,6 +119,10 @@ public class PerfModeUtils {
 
     public Boolean turnOnPerformanceMode() {
         if (mPerfManager == null) {
+            return false;
+        }
+
+        if (mPowerManager.isPowerSaveMode()) {
             return false;
         }
 
@@ -162,7 +183,7 @@ public class PerfModeUtils {
         return true;
     }
 
-    private static void dlog(String msg) {
+    protected static void dlog(String msg) {
         if (Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, msg);
         }

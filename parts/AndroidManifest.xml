@@ -128,6 +128,11 @@
             android:permission="TouchNonUiService">
         </service>
 
+        <service
+            android:name=".perf.PerfModeService"
+            android:permission="PerfModeService">
+        </service>
+
     </application>
 </manifest>
 

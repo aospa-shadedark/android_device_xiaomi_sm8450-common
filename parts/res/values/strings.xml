@@ -53,5 +53,7 @@
      <string name="perf_mode_summary">Increase system performance at the cost of higher battery usage and temperatures</string>
      <string name="perf_mode_error">Error occured!</string>
      <string name="perf_mode_notification">High performance mode is currently active</string>
+     <string name="perf_mode_turn_off">Turn off</string>
+     <string name="perf_mode_battery_saver_on">Cannot use high performance mode with battery saver!</string>
 
 </resources>

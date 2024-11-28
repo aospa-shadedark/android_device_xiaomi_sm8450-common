@@ -19,6 +19,7 @@ package co.aospa.xiaomiparts.perf;
 import static com.android.settingslib.drawer.CategoryKey.CATEGORY_BATTERY;
 
 import android.content.Context;
+import android.os.PowerManager;
 
 import co.aospa.xiaomiparts.R;
 import com.android.settingslib.drawer.EntryController;
@@ -26,11 +27,13 @@ import com.android.settingslib.drawer.ProviderSwitch;
 
 public class PerfModeSwitchController extends EntryController implements ProviderSwitch {
 
-    private Context mContext;
+    private final Context mContext;
+    private final PowerManager mPowerManager;
 
     public PerfModeSwitchController(Context context) {
         super();
         mContext = context;
+        mPowerManager = context.getSystemService(PowerManager.class);
     }
 
     @Override
@@ -48,21 +51,19 @@ public class PerfModeSwitchController extends EntryController implements Provide
 
     @Override
     public boolean isSwitchChecked() {
-        return PerfModeUtils.getInstance(mContext).isPerformanceModeOn();
+        return PerfModeUtils.getInstance(mContext).isPerformanceModeOn()
+                && !mPowerManager.isPowerSaveMode();
     }
 
     @Override
     public boolean onSwitchCheckedChanged(boolean checked) {
-        PerfModeUtils utils = PerfModeUtils.getInstance(mContext);
-        if (checked) {
-            return utils.turnOnPerformanceMode();
-        } else {
-            return utils.turnOffPerformanceMode();
-        }
+        final PerfModeUtils utils = PerfModeUtils.getInstance(mContext);
+        return checked ? utils.turnOnPerformanceMode() : utils.turnOffPerformanceMode();
     }
 
     @Override
     public String getSwitchErrorMessage(boolean attemptedChecked) {
-        return mContext.getString(R.string.perf_mode_error);
+        return mContext.getString(mPowerManager.isPowerSaveMode()
+                ? R.string.perf_mode_battery_saver_on : R.string.perf_mode_error);
     }
 }

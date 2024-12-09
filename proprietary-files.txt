@@ -1,4 +1,4 @@
-# Device proprietary files - from marble HyperOS V816.0.9.0.UMRCNXM package, unless pinned
+# Device proprietary files - from miui_MARBLE_OS1.0.12.0.UMRCNXM_d8d76fa31c_14.0, unless pinned
 
 # ADSP
 vendor/bin/adsprpcd

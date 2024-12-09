@@ -3,6 +3,10 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+on early-init
+    # Enable performance mode during bootup
+    setprop sys.perf_mode 1
+
 on property:vendor.post_boot.parsed=1
     exec u:r:vendor_qti_init_shell:s0 -- /vendor/bin/init.xiaomi_taro.perf.sh
 
@@ -11,8 +15,23 @@ on property:vendor.post_boot.parsed=1
     write /proc/sys/walt/input_boost/powerkey_input_boost_freq "1785600 0 0 0 2169600 0 0 2419200"
     write /proc/sys/walt/input_boost/powerkey_input_boost_ms 500
 
-on property:sys.perf_mode_active=1
+# Performance mode
+on property:sys.perf_mode=1
+    # Disable cpu low power modes
     write /sys/devices/system/cpu/qcom_lpm/parameters/sleep_disabled 1
+    # WINDOW_STATS_MAX_RECENT_AVG
+    write /proc/sys/walt/sched_window_stats_policy 2
 
-on property:sys.perf_mode_active=0
+# Regular
+on property:sys.perf_mode=0
+    # Enable cpu low power modes
     write /sys/devices/system/cpu/qcom_lpm/parameters/sleep_disabled 0
+    # WINDOW_STATS_EWMA
+    write /proc/sys/walt/sched_window_stats_policy 5
+
+# Battery saver
+on property:sys.perf_mode=2
+    # Enable cpu low power modes
+    write /sys/devices/system/cpu/qcom_lpm/parameters/sleep_disabled 0
+    # WINDOW_STATS_WMA
+    write /proc/sys/walt/sched_window_stats_policy 4

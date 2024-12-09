@@ -29,7 +29,7 @@ public class PerfModeUtils {
 
     private static final String TAG = "PerfModeUtils";
     public static final String PREF_KEY = "performance_mode";
-    private static final String SYS_PROP = "sys.perf_mode_active";
+    protected static final String SYS_PROP = "sys.perf_mode";
     private static final String PERF_SERVICE_BINDER_NAME = "vendor.perfservice";
     private static final int PERFORMANCE_MODE_BOOST_ID = 0x00001091;
     private static final int NOTIFICATION_ID = 0;
@@ -106,9 +106,16 @@ public class PerfModeUtils {
 
 
     public void onBootCompleted() {
-        if (isPerformanceModeOn() && !mPowerManager.isPowerSaveMode()) {
+        if (isPerformanceModeOn()) {
             dlog("boot completed, performance mode is enabled");
-            turnOnPerformanceMode();
+            if (mPowerManager.isPowerSaveMode()) {
+                dlog("power saver on, disabling perf mode");
+                turnOffPerformanceMode();
+            } else {
+                turnOnPerformanceMode();
+            }
+        } else {
+            resetPerfModeProp();
         }
         PerfModeService.startService(mContext);
     }
@@ -174,13 +181,17 @@ public class PerfModeUtils {
             tu.setDefaultThermalProfile();
             tu.startService();
             mNotificationManager.cancel(NOTIFICATION_ID);
-            SystemProperties.set(SYS_PROP, "0");
+            resetPerfModeProp();
         } else {
             Log.e(TAG, "turnOffPerformanceMode: turn off failure");
             return false;
         }
 
         return true;
+    }
+
+    private void resetPerfModeProp() {
+        SystemProperties.set(SYS_PROP, mPowerManager.isPowerSaveMode() ? "2" : "0");
     }
 
     protected static void dlog(String msg) {

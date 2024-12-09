@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.util.Log;
 
@@ -31,9 +32,15 @@ public class PerfModeService extends Service {
             final PerfModeUtils utils = PerfModeUtils.getInstance(context);
             switch (intent.getAction()) {
                 case PowerManager.ACTION_POWER_SAVE_MODE_CHANGED:
-                    if (mPowerManager.isPowerSaveMode() && utils.isPerformanceModeOn()) {
-                        Log.i(TAG, "power saver activated, disabling perf mode");
-                        utils.turnOffPerformanceMode();
+                    if (mPowerManager.isPowerSaveMode()) {
+                        if (utils.isPerformanceModeOn()) {
+                            Log.i(TAG, "power saver activated, disabling perf mode");
+                            utils.turnOffPerformanceMode();
+                        } else {
+                            SystemProperties.set(PerfModeUtils.SYS_PROP, "2");
+                        }
+                    } else {
+                        SystemProperties.set(PerfModeUtils.SYS_PROP, "0");
                     }
                     break;
                 case PerfModeUtils.ACTION_DISABLE_PERF_MODE:

@@ -141,7 +141,6 @@ PRODUCT_ODM_PROPERTIES += \
     vendor.display.enable_rounded_corner=0
 
 PRODUCT_VENDOR_PROPERTIES += \
-    debug.sf.disable_backpressure=1 \
     debug.sf.frame_rate_multiple_threshold=120 \
     debug.sf.region_sampling_timer_timeout_ns=200000000 \
     debug.sf.region_sampling_period_ns=200000000 \

@@ -76,6 +76,8 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.audio.soundtrigger.xatx.vop.level=0 \
     ro.vendor.audio.support.sound.id=true
 
+$(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
+
 # Bluetooth
 PRODUCT_VENDOR_PROPERTIES += \
     persist.sys.fflag.override.settings_bluetooth_hearing_aid=true \

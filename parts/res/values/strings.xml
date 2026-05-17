@@ -63,4 +63,8 @@
      <!-- Common -->
      <string name="unknown">Unknown</string>
 
+    <string name="search_apps">Search apps...</string>
+    <string name="save_configs">Save Configs</string>
+    <string name="reset_configs">Reset Configs</string> 
+
 </resources>

@@ -101,6 +101,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
     bluetooth.hfp.codec_aptx_voice.enabled=false \
     bluetooth.hfp.swb.aptx.power_management.enabled=false
 
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    bluetooth.ble.iso_max_connection_interval=40 \
+    bluetooth.ble.iso_min_connection_interval=24
+
 # Camera
 $(call inherit-product-if-exists, vendor/xiaomi/camera/miuicamera.mk)
 

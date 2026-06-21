@@ -154,6 +154,9 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.sre.enable=true \
     ro.vendor.xiaomi.bl.poll=true
 
+# Dolby Vision
+$(call inherit-product, hardware/dolby-vision/dolby-vision.mk)
+
 # Doze
 PRODUCT_PACKAGES += \
     ParanoidDoze

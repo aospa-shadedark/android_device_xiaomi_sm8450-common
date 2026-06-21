@@ -9,7 +9,10 @@ package co.aospa.xiaomiparts
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.hardware.display.DisplayManager
 import android.util.Log
+import android.view.Display
+import android.view.Display.HdrCapabilities
 import co.aospa.xiaomiparts.camera.NfcCameraService
 import co.aospa.xiaomiparts.display.ColorService
 import co.aospa.xiaomiparts.display.DcDimmingService
@@ -37,6 +40,27 @@ class BootCompletedReceiver : BroadcastReceiver() {
         HighTouchPollingService.startService(context)
         ThermalUtils.getInstance(context).startService()
         GestureUtils.onBootCompleted(context)
+        overrideHdrTypes(context)
+    }
+
+    private fun overrideHdrTypes(context: Context) {
+        try {
+            val displayManager = context.getSystemService(DisplayManager::class.java)
+
+            displayManager?.overrideHdrTypes(
+                Display.DEFAULT_DISPLAY,
+                intArrayOf(
+                    HdrCapabilities.HDR_TYPE_DOLBY_VISION,
+                    HdrCapabilities.HDR_TYPE_HDR10,
+                    HdrCapabilities.HDR_TYPE_HLG,
+                    HdrCapabilities.HDR_TYPE_HDR10_PLUS,
+                ),
+            )
+
+            Log.d(TAG, "HDR override applied")
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to override HDR types", e)
+        }
     }
 
     companion object {

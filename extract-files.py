@@ -99,7 +99,8 @@ blob_fixups: blob_fixups_user_type = {
     ): blob_fixup()
         .regex_replace(r'.*media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).*\n?', '')
         .regex_replace(r'.*media_codecs_with_dolby.*\n?', '')
-        .regex_replace(r'<MediaCodec name="c2\.dolby\.[\s\S]*?</MediaCodec>\n?', ''),
+        .regex_replace(r'<MediaCodec name="c2\.dolby\.[\s\S]*?</MediaCodec>\n?', '')
+        .regex_replace(r'(?s)(<MediaCodecs.*?>)', r'\1\n    <Include href="media_codecs_dolby_video.xml" />'),
     (
         'vendor/lib64/mediadrm/libwvdrmengine.so',
         'vendor/lib64/libcodec2_soft_ac4dec.so',

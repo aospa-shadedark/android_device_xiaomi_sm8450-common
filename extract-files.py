@@ -14,9 +14,6 @@ from extract_utils.main import ExtractUtils, ExtractUtilsModule
 
 namespace_imports = [
     'device/xiaomi/sm8450-common',
-    'hardware/qcom/display',
-    'hardware/qcom/display/gralloc',
-    'hardware/qcom/display/libdebug',
     'hardware/xiaomi',
     'vendor/qcom/common/vendor/adreno/s',
     'vendor/qcom/common/vendor/display/5.10',

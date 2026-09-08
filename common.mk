@@ -139,7 +139,7 @@ PRODUCT_ODM_PROPERTIES += \
     persist.sys.sf.color_mode=0 \
     ro.surface_flinger.set_idle_timer_ms?=1100 \
     ro.surface_flinger.set_touch_timer_ms?=200 \
-    ro.surface_flinger.supports_background_blur=0 \
+    ro.surface_flinger.supports_background_blur=1 \
     vendor.display.disable_3d_adaptive_tm=0 \
     vendor.display.vds_allow_hwc=1
 

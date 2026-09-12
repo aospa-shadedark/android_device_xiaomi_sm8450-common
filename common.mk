@@ -412,4 +412,5 @@ PRODUCT_PACKAGES += \
     firmware_qca6490_wlan_mac.bin_symlink
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/qca6490/WCNSS_qcom_cfg.ini
+    $(LOCAL_PATH)/configs/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/qca6490/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/configs/wifi/regdb_xiaomi.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca6490/regdb_xiaomi.bin

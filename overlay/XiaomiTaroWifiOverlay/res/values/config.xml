@@ -63,4 +63,8 @@
          configured.-->
     <integer translatable="false" name="config_wifiPnoScanIntervalMultiplier">6</integer>
 
+    <!-- Whether to use the explicit vendor HAL API: IWifiStaIface.setRoamingState for disabling fw roaming (only needed if
+         setting the bssid on the connection alone does not disable fw roaming on this chip) -->
+    <bool translatable="false" name="config_wifiUseHalApiToDisableFwRoaming">true</bool>
+
 </resources>

@@ -208,8 +208,8 @@ PRODUCT_COPY_FILES += \
 $(call soong_config_set_bool,lineage_health,charging_control_supports_bypass,false)
 
 PRODUCT_PACKAGES += \
-    android.hardware.health-service.xiaomi \
-    android.hardware.health-service.xiaomi_recovery \
+    android.hardware.health-service.qti \
+    android.hardware.health-service.qti_recovery \
     vendor.lineage.health-service.default
 
 # Incremental FS

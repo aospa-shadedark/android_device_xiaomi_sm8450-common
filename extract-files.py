@@ -76,8 +76,10 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('android.hardware.security.sharedsecret-V1-ndk_platform.so', 'android.hardware.security.sharedsecret-V1-ndk.so')
         .add_needed('android.hardware.security.rkp-V1-ndk.so'),
     'vendor/etc/media_codecs_dolby_audio.xml': blob_fixup()
-        .regex_replace(r'<MediaCodec name="c2\.dolby\.ac4\.decoder[\s\S]*?</MediaCodec>\n?', '')
         .regex_replace(r'.*software-codec.*\n?', ''),
+    'vendor/lib64/libcodec2_soft_ac4dec.so': blob_fixup()
+        .replace_needed('libstagefright_foundation.so', 'libstagefright_foundation-v33.so')
+        .sig_replace('fd 7b be a9 f4 4f 01 a9 fd 03 00 91 94 05 00 f0', '80 35 86 52 80 00 a0 72 c0 03 5f d6 1f 20 03 d5'),
     (
         'vendor/etc/media_codecs.xml',
         'vendor/etc/media_codecs_cape.xml',
@@ -100,7 +102,6 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace(r'(?s)(<MediaCodecs.*?>)', r'\1\n    <Include href="media_codecs_dolby_video.xml" />'),
     (
         'vendor/lib64/mediadrm/libwvdrmengine.so',
-        'vendor/lib64/libcodec2_soft_ac4dec.so',
         'vendor/lib64/libcodec2_soft_ddpdec.so',
         'vendor/lib64/libdlbdsservice.so',
         'vendor/lib64/libdlbpreg.so',

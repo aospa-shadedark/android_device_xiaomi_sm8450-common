@@ -97,7 +97,10 @@ BOARD_QTI_DYNAMIC_PARTITIONS_SIZE ?= 9122611200 # (BOARD_SUPER_PARTITION_SIZE - 
 
 $(foreach p, $(call to-upper, $(BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST)), \
     $(if $(filter user,$(TARGET_BUILD_VARIANT)), \
-        $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := erofs), \
+        $(if $(filter true,$(TARGET_DISABLES_GMS)), \
+            $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := ext4), \
+            $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := erofs) \
+        ), \
         $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := ext4) \
         $(eval BOARD_$(p)IMAGE_PARTITION_RESERVED_SIZE := 104857600) \
     ) \

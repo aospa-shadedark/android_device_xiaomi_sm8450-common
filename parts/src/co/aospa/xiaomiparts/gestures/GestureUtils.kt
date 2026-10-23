@@ -33,14 +33,13 @@ object GestureUtils {
     private const val SENSOR_TYPE_BACK_TAP = 33171045 // xiaomi.sensor.dbtap
 
     fun setFingerprintNavigation(enable: Boolean) {
-        runCatching { IXiaomiFingerprint.getService() }
-            .onSuccess {
-                it.extCmd(
+        runCatching {
+                IXiaomiFingerprint.getService().extCmd(
                     FINGERPRINT_CMD_LOCKOUT_MODE,
                     if (enable) POWERFP_ENABLE_NAVIGATION else POWERFP_DISABLE_NAVIGATION,
                 )
-                dlog(TAG, "setFingerprintNavigation($enable) success")
             }
+            .onSuccess { dlog(TAG, "setFingerprintNavigation($enable) success") }
             .onFailure { e -> Log.e(TAG, "setFingerprintNavigation($enable) failed!", e) }
     }
 
@@ -52,15 +51,14 @@ object GestureUtils {
             "onBootCompleted: fpTapAvailable=$fpTapAvailable, backTapAvailable=$backTapAvailable"
         )
 
-        if (!fpTapAvailable && !backTapAvailable) {
-            dlog(TAG, "Disabling gesture settings")
-            context.packageManager.setComponentEnabledSetting(
-                ComponentName(context, GestureSettingsActivity::class.java),
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                PackageManager.DONT_KILL_APP,
-            )
-            return
-        }
+        val gesturesAvailable = fpTapAvailable || backTapAvailable
+        context.packageManager.setComponentEnabledSetting(
+            ComponentName(context, GestureSettingsActivity::class.java),
+            if (gesturesAvailable) PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+            else PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+            PackageManager.DONT_KILL_APP,
+        )
+        if (!gesturesAvailable) return
 
         if (fpTapAvailable) {
             setFingerprintNavigation(isFpDoubleTapEnabled(context))

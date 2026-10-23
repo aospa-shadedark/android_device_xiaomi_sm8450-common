@@ -7,9 +7,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/thermal_title">
 
+    <co.aospa.xiaomiparts.ui.PartsIntroPreference
+        android:key="thermal_intro"
+        android:title="@string/thermal_intro_title"
+        android:summary="@string/thermal_intro"
+        android:icon="@drawable/ic_thermal_settings" />
+
     <com.android.settingslib.widget.MainSwitchPreference
         android:defaultValue="false"
         android:key="thermal_enable"
-        android:title="@string/thermal_enable" />
+        android:title="@string/thermal_enable"
+        android:summary="@string/thermal_summary" />
 
 </PreferenceScreen>

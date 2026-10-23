@@ -11,9 +11,11 @@
 
     <!-- Thermal Profiles -->
     <string name="thermal_title">Thermal profiles</string>
+    <string name="thermal_intro">Choose how your phone balances performance and temperature for each app.</string>
     <string name="thermal_enable">Use thermal profiles</string>
     <string name="thermal_summary">Per-app thermal profile configuration</string>
     <string name="thermal_loading">Loading...</string>
+    <string name="thermal_profile_for_app">Thermal profile for %1$s</string>
     <string name="thermal_default">Default</string>
     <string name="thermal_benchmark">Benchmark</string>
     <string name="thermal_browser">Browser</string>
@@ -21,22 +23,29 @@
     <string name="thermal_dialer">Dialer</string>
     <string name="thermal_gaming">Gaming</string>
     <string name="thermal_navigation">Navigation</string>
-    <string name="thermal_streaming">Streaming</string>
     <string name="thermal_video">Video</string>
     <string name="thermal_reset">Reset to defaults</string>
-    <string name="thermal_reset_message">Are you sure you want to reset thermal profile for all apps?</string>
 
      <!-- Gestures -->
      <string name="gestures_title">Device-specific gestures</string>
+     <string name="gestures_intro">Set quick actions for taps on the fingerprint sensor or the back of your phone.</string>
+     <string name="gestures_intro_fingerprint">Set a quick action for a double tap on the fingerprint sensor.</string>
+     <string name="gestures_intro_back">Set quick actions for double and triple taps on the back of your phone.</string>
+     <string name="gestures_unavailable">This device does not support fingerprint tap or back tap gestures.</string>
+     <string name="gesture_fingerprint_category">Fingerprint sensor</string>
+     <string name="gesture_back_category">Back of phone</string>
      <string name="gestures_summary_back_tap">Back tap</string>
      <string name="gestures_summary_fp_tap">Double tap fingerprint sensor</string>
-     <string name="gestures_footer_text">
-          Back tap gesture works only when the screen is on.
-          Double tap on fingerprint sensor works only after the device is unlocked.
-     </string>
-     <string name="fp_double_tap_title">Double tap on fingerprint sensor to</string>
-     <string name="back_double_tap_title">Double tap on back of phone to</string>
-     <string name="back_triple_tap_title">Triple tap on back of phone to</string>
+     <string name="gestures_footer_text">Back tap gestures work while the screen is on.\n\nFingerprint double tap works after you unlock your phone. Select Do nothing to turn a gesture off.</string>
+     <string name="gestures_footer_fingerprint">Fingerprint double tap works after you unlock your phone. Select Do nothing to turn the gesture off.</string>
+     <string name="gestures_footer_back">Back tap gestures work while the screen is on. Select Do nothing to turn a gesture off.</string>
+     <string name="fp_double_tap_title">Double tap</string>
+     <string name="fp_double_tap_dialog_title">Fingerprint double tap action</string>
+     <string name="back_double_tap_title">Double tap</string>
+     <string name="back_double_tap_dialog_title">Back double tap action</string>
+     <string name="back_triple_tap_title">Triple tap</string>
+     <string name="back_triple_tap_dialog_title">Back triple tap action</string>
+     <string name="thermal_apps_title">App profiles</string>
      <string name="action_off">Do nothing</string>
      <string name="action_screenshot">Take a screenshot</string>
      <string name="action_assistant">Access your digital assistant</string>
@@ -44,11 +53,10 @@
      <string name="action_notifications">Expand notification panel</string>
      <string name="action_camera">Open camera</string>
      <string name="action_flashlight">Toggle flashlight</string>
-     <string name="action_mute">Switch ringer mode (mute)</string>
-     <string name="action_vibrate">Switch ringer mode (vibrate)</string>
+     <string name="action_mute">Toggle silent mode</string>
+     <string name="action_vibrate">Toggle vibration mode</string>
      <string name="action_volume">Show volume panel</string>
      <string name="action_sleep">Turn off screen</string>
-     <string name="gesture_unavailable">Unavailable on device</string>
 
      <!-- Common -->
      <string name="unknown">Unknown</string>

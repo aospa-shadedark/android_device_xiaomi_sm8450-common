@@ -17,12 +17,6 @@
 
 <resources>
 
-    <style name="PreferenceTheme.SettingsLib.Thermal">
-        <item name="android:layout">@layout/thermal_layout</item>
-    </style>
-
-    <style name="Theme.SubSettingsBase.Thermal">
-        <item name="preferenceTheme">@style/PreferenceTheme.SettingsLib.Thermal</item>
-    </style>
+    <style name="Theme.SubSettingsBase.Thermal" parent="Theme.SubSettingsBase" />
 
 </resources>

@@ -9,6 +9,7 @@ package co.aospa.xiaomiparts
 import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
+import android.icu.text.ListFormatter
 import android.net.Uri
 import android.os.Bundle
 import co.aospa.xiaomiparts.gestures.GestureUtils
@@ -56,15 +57,19 @@ class SummaryProvider : ContentProvider() {
         val context = context ?: return ""
         val backTapSummary = context.getString(R.string.gestures_summary_back_tap)
         val fpTapSummary = context.getString(R.string.gestures_summary_fp_tap)
-        return buildList {
-                if (GestureUtils.isBackTapAvailable(context)) {
-                    add(backTapSummary)
-                }
-                if (GestureUtils.isFpDoubleTapAvailable(context)) {
-                    add(fpTapSummary)
-                }
+        val gestures = buildList {
+            if (GestureUtils.isFpDoubleTapAvailable(context)) {
+                add(fpTapSummary)
             }
-            .joinToString(", ")
+            if (GestureUtils.isBackTapAvailable(context)) {
+                add(backTapSummary)
+            }
+        }
+        return if (gestures.isEmpty()) {
+            context.getString(R.string.gestures_unavailable)
+        } else {
+            ListFormatter.getInstance().format(gestures)
+        }
     }
 
     companion object {

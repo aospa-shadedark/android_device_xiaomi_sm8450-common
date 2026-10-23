@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-FileCopyrightText: 2025 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="12dp"
+    android:minHeight="112dp"
+    android:background="@drawable/thermal_status_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <ProgressBar
+        android:id="@+id/thermal_loading_progress"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="12dp"
+        android:indeterminate="true"
+        android:importantForAccessibility="no" />
+
+    <TextView
+        android:id="@+id/thermal_loading_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:accessibilityLiveRegion="polite"
+        android:gravity="center"
+        android:text="@string/thermal_loading"
+        android:textAppearance="@style/TextAppearance.SettingsLib.BodyMedium"
+        android:textColor="?android:attr/textColorSecondary" />
+
+    <Button
+        android:id="@+id/thermal_status_action"
+        style="@style/Widget.SettingsLib.DialogButton.Filled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:minHeight="48dp"
+        android:text="@string/thermal_retry"
+        android:visibility="gone" />
+</LinearLayout>

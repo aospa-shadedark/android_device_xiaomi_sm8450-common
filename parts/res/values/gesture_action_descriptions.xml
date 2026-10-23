@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-FileCopyrightText: 2026 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <!-- Keep the order aligned with gesture_action_entries and gesture_action_values. -->
+    <string-array name="gesture_action_summaries">
+        <item>Turn this gesture off.</item>
+        <item>Save an image of the current screen.</item>
+        <item>Open your configured digital assistant.</item>
+        <item>Control the current media session.</item>
+        <item>Show your notifications.</item>
+        <item>Open the camera to take a photo.</item>
+        <item>Turn the rear flashlight on or off.</item>
+        <item>Switch between silent mode and normal ringing.</item>
+        <item>Switch between vibration mode and normal ringing.</item>
+        <item>Open the system volume controls.</item>
+        <item>Put the phone to sleep.</item>
+    </string-array>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-FileCopyrightText: 2026 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <dimen name="parts_space_extra_small">4dp</dimen>
+    <dimen name="parts_space_regular">12dp</dimen>
+    <dimen name="parts_card_content_padding">20dp</dimen>
+    <dimen name="parts_corner_large">16dp</dimen>
+    <dimen name="parts_corner_extra_large">28dp</dimen>
+    <dimen name="parts_intro_badge_size">40dp</dimen>
+    <dimen name="parts_intro_glyph_size">24dp</dimen>
+    <dimen name="parts_choice_min_height">72dp</dimen>
+    <dimen name="parts_choice_horizontal_padding">24dp</dimen>
+    <dimen name="parts_choice_vertical_padding">16dp</dimen>
+</resources>

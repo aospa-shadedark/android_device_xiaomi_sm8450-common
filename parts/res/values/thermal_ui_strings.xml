@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-FileCopyrightText: 2025 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <string name="thermal_apps_guidance">Tap an app to choose a profile. Automatic follows the app category.</string>
+    <string name="thermal_search_apps">Search apps</string>
+    <string name="thermal_search_apps_description">Search by app name or package</string>
+    <string name="thermal_clear_search">Clear search</string>
+    <string name="thermal_customized_only">Show customized apps only</string>
+    <string name="thermal_app_count">%1$d of %2$d apps</string>
+    <string name="thermal_custom_profile">Custom · %1$s</string>
+    <string name="thermal_automatic_profile">Automatic (%1$s)</string>
+    <string name="thermal_app_accessibility">%1$s, %2$s</string>
+    <string name="thermal_profiles_disabled">Turn on thermal profiles to choose a profile for each app. Your saved choices are kept while this is off.</string>
+    <string name="thermal_refreshing">Updating apps…</string>
+    <string name="thermal_apps_load_error">Apps could not be loaded. Try again.</string>
+    <string name="thermal_apps_refresh_error">Apps could not be updated. The previous app list is still shown.</string>
+    <string name="thermal_no_apps">No apps with a launcher icon were found.</string>
+    <string name="thermal_no_matches">No apps match these filters.</string>
+    <string name="thermal_retry">Try again</string>
+    <string name="thermal_clear_filters">Clear filters</string>
+    <string name="thermal_reset_action">Reset</string>
+    <string name="thermal_reset_profiles_message">Remove all customized profiles and use automatic profiles for every app? Thermal profiles will stay turned on or off as they are now.</string>
+    <string name="thermal_video_calls">Video calls</string>
+    <string name="thermal_profile_automatic_summary">Choose a profile from the app category and device defaults.</string>
+    <string name="thermal_profile_benchmark_summary">Device profile for benchmark apps.</string>
+    <string name="thermal_profile_browser_summary">Device profile for web browsing.</string>
+    <string name="thermal_profile_camera_summary">Device profile for camera apps.</string>
+    <string name="thermal_profile_dialer_summary">Device profile for phone calls.</string>
+    <string name="thermal_profile_gaming_summary">Device profile for games.</string>
+    <string name="thermal_profile_navigation_summary">Device profile for maps and navigation.</string>
+    <string name="thermal_profile_videocall_summary">Device profile for video calling apps.</string>
+    <string name="thermal_profile_video_summary">Device profile for video playback.</string>
+    <string name="thermal_profile_default_summary">Use the standard device profile for this app.</string>
+</resources>

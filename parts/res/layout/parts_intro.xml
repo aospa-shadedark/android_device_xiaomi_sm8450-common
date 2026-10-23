@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-FileCopyrightText: 2026 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:focusable="false"
+    android:paddingTop="@dimen/parts_space_extra_small"
+    android:paddingBottom="@dimen/parts_space_regular">
+
+    <!-- Keep the surface inside the row: SettingsLib owns the row's background. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
+        android:layout_marginEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:background="@drawable/parts_intro_background"
+        android:orientation="vertical"
+        android:padding="@dimen/parts_card_content_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/parts_intro_icon_badge"
+                android:layout_width="@dimen/parts_intro_badge_size"
+                android:layout_height="@dimen/parts_intro_badge_size"
+                android:background="@drawable/parts_icon_badge_background"
+                android:importantForAccessibility="noHideDescendants">
+
+                <ImageView
+                    android:id="@android:id/icon"
+                    android:layout_width="@dimen/parts_intro_glyph_size"
+                    android:layout_height="@dimen/parts_intro_glyph_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/settingslib_materialColorOnPrimaryContainer" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@android:id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/parts_space_regular"
+                android:layout_weight="1"
+                android:accessibilityHeading="true"
+                android:singleLine="false"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.Parts.Headline"
+                android:textDirection="locale" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@android:id/summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/parts_space_regular"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.Parts.Body"
+            android:textDirection="locale" />
+    </LinearLayout>
+</FrameLayout>

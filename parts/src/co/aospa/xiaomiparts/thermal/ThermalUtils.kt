@@ -28,7 +28,7 @@ private constructor(
     private val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
     private val serviceIntent = Intent(context, ThermalService::class.java)
 
-    var enabled: Boolean = sharedPrefs.getBoolean(THERMAL_ENABLED, false)
+    @Volatile var enabled: Boolean = sharedPrefs.getBoolean(THERMAL_ENABLED, false)
         set(value) {
             if (field == value) return
             field = value
@@ -41,11 +41,12 @@ private constructor(
             }
         }
 
-    var value: String = readValue()
+    @Volatile var value: String = readValue()
         set(value) {
             if (field == value) return
             field = value
             writeValue(value)
+            startService()
         }
 
     fun startService() {
@@ -68,17 +69,54 @@ private constructor(
     private fun readValue(): String = sharedPrefs.getString(THERMAL_CONTROL, null) ?: DEFAULT_VALUE
 
     fun writePackage(packageName: String, mode: Int) {
+        if (packageName.isEmpty() || ThermalState.values().none { it.id == mode }) return
         dlog(TAG, "writePackage: $packageName -> $mode")
-        var newValue = value.replace("$packageName,", "")
-        val modes = newValue.split(":").toMutableList()
-        modes[mode] += "$packageName,"
-        value = modes.joinToString(":")
+        val profiles = readProfiles()
+        profiles.forEach { packages -> packages.removeAll { it == packageName } }
+        profiles[mode].add(packageName)
+        writeProfiles(profiles)
     }
 
-    fun getStateForPackage(packageName: String): ThermalState {
+    /** Removing an override restores category-based detection without changing stored IDs. */
+    fun removePackage(packageName: String) {
+        val profiles = readProfiles()
+        var removed = false
+        profiles.forEach { packages ->
+            if (packages.removeAll { it == packageName }) removed = true
+        }
+        if (removed) writeProfiles(profiles)
+    }
+
+    private fun writeProfiles(profiles: List<List<String>>) {
+        value = ThermalState.values().joinToString(":") { state ->
+            state.prefix + profiles[state.id].joinToString("") { "$it," }
+        }
+    }
+
+    fun getPackageOverrides(): Map<String, ThermalState> {
+        val profiles = readProfiles()
+        return buildMap {
+            ThermalState.values().forEach { state ->
+                profiles[state.id].forEach { packageName ->
+                    if (!containsKey(packageName)) put(packageName, state)
+                }
+            }
+        }
+    }
+
+    fun getStateForPackage(packageName: String): ThermalState =
+        getPackageOverrides()[packageName] ?: getDefaultStateForPackage(packageName)
+
+    private fun readProfiles(): List<MutableList<String>> {
         val modes = value.split(":")
-        return ThermalState.values().find { state -> modes[state.id].contains("$packageName,") }
-            ?: getDefaultStateForPackage(packageName)
+        return ThermalState.values().map { state ->
+            modes.firstOrNull { it.startsWith(state.prefix) }
+                ?.removePrefix(state.prefix)
+                ?.split(",")
+                ?.filter { it.isNotEmpty() }
+                ?.toMutableList()
+                ?: mutableListOf()
+        }
     }
 
     fun resetProfiles() {
@@ -92,6 +130,7 @@ private constructor(
     }
 
     fun setThermalProfile(packageName: String) {
+        if (!enabled) return
         if (packageName.isEmpty()) {
             dlog(TAG, "setThermalProfile: packageName is empty")
             return
@@ -101,7 +140,7 @@ private constructor(
         writeLine(THERMAL_SCONFIG, state.config)
     }
 
-    private fun getDefaultStateForPackage(packageName: String): ThermalState {
+    fun getDefaultStateForPackage(packageName: String): ThermalState {
         runCatching { context.packageManager.getApplicationInfo(packageName, 0) }
             .onSuccess {
                 when (it.category) {
@@ -184,7 +223,7 @@ private constructor(
             6,
             "4", // thermal-videochat.conf
             "thermal.streaming=",
-            R.string.thermal_streaming,
+            R.string.thermal_video_calls,
         ),
         VIDEO(
             7,

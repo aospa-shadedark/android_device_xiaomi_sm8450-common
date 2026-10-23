@@ -1,43 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     SPDX-FileCopyrightText: 2020 The LineageOS Project
+<!-- SPDX-FileCopyrightText: 2020 The LineageOS Project
      SPDX-FileCopyrightText: 2025 Paranoid Android
-     SPDX-License-Identifier: Apache-2.0
--->
+     SPDX-License-Identifier: Apache-2.0 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
-    android:paddingBottom="8dp"
-    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-    android:paddingTop="8dp">
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="6dp"
+    android:minHeight="96dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@drawable/thermal_app_item_background"
+    android:clickable="true"
+    android:focusable="true"
+    android:screenReaderFocusable="true">
 
     <ImageView
         android:id="@+id/app_icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:contentDescription="@null"
-        android:scaleType="centerInside" />
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter" />
 
-    <TextView
-        android:id="@+id/app_name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginStart="12dp"
-        android:layout_gravity="center_vertical"
-        android:ellipsize="marquee"
-        android:singleLine="true"
-        android:textAlignment="viewStart"
-        android:textAppearance="?android:attr/textAppearanceListItem"
-        android:textColor="?android:attr/textColorPrimary" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        android:importantForAccessibility="noHideDescendants">
 
-    <Spinner
-        android:id="@+id/app_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.SettingsLib.TitleMedium" />
 
+        <TextView
+            android:id="@+id/app_package"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="middle"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.SettingsLib.BodySmall"
+            android:textColor="?android:attr/textColorSecondary" />
+
+        <TextView
+            android:id="@+id/app_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:background="@drawable/thermal_profile_badge_background"
+            android:textAppearance="@style/TextAppearance.SettingsLib.LabelMedium.Emphasized"
+            android:textColor="@color/thermal_profile_badge_text" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_thermal_profile_expand" />
 </LinearLayout>

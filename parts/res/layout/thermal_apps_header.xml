@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-FileCopyrightText: 2025 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="12dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:accessibilityHeading="true"
+        android:text="@string/thermal_apps_title"
+        android:textAppearance="@style/TextAppearance.SettingsLib.TitleSmall.Emphasized" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/thermal_apps_guidance"
+        android:textAppearance="@style/TextAppearance.SettingsLib.BodyMedium"
+        android:textColor="?android:attr/textColorSecondary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:minHeight="56dp"
+        android:background="@drawable/thermal_search_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="4dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:importantForAccessibility="no"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_thermal_search" />
+
+        <EditText
+            android:id="@+id/thermal_app_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="56dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="8dp"
+            android:background="@null"
+            android:hint="@string/thermal_search_apps"
+            android:contentDescription="@string/thermal_search_apps_description"
+            android:inputType="textFilter"
+            android:imeOptions="actionSearch|flagNoExtractUi"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.SettingsLib.BodyLarge" />
+
+        <ImageButton
+            android:id="@+id/thermal_clear_search"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/thermal_clear_search"
+            android:src="@drawable/ic_thermal_clear"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/thermal_customized_only"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:minHeight="56dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@drawable/thermal_filter_background"
+        android:buttonTint="@color/settingslib_materialColorPrimary"
+        android:text="@string/thermal_customized_only"
+        android:textColor="@color/thermal_filter_text"
+        android:textAppearance="@style/TextAppearance.SettingsLib.LabelLarge.Emphasized" />
+
+    <TextView
+        android:id="@+id/thermal_apps_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textAppearance="@style/TextAppearance.SettingsLib.BodySmall"
+        android:textColor="?android:attr/textColorSecondary" />
+</LinearLayout>

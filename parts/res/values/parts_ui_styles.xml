@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-FileCopyrightText: 2026 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <style name="TextAppearance.Parts.Headline"
+        parent="TextAppearance.SettingsLib.TitleLarge.Emphasized">
+        <item name="android:textColor">@color/settingslib_materialColorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.Parts.Body"
+        parent="TextAppearance.SettingsLib.BodyMedium">
+        <item name="android:textColor">@color/settingslib_materialColorOnSurfaceVariant</item>
+    </style>
+
+    <style name="TextAppearance.Parts.ChoiceTitle"
+        parent="TextAppearance.SettingsLib.TitleMedium.Emphasized">
+        <item name="android:textColor">@color/parts_choice_title_color</item>
+    </style>
+
+    <style name="TextAppearance.Parts.ChoiceSummary"
+        parent="TextAppearance.SettingsLib.BodyMedium">
+        <item name="android:textColor">@color/parts_choice_summary_color</item>
+    </style>
+</resources>

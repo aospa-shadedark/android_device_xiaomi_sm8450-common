@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-FileCopyrightText: 2026 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0 -->
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/parts_choice_min_height"
+    android:background="@drawable/parts_choice_background"
+    android:checkMark="?android:attr/listChoiceIndicatorSingle"
+    android:checkMarkTint="@color/parts_choice_indicator_color"
+    android:gravity="start|center_vertical"
+    android:paddingStart="@dimen/parts_choice_horizontal_padding"
+    android:paddingEnd="@dimen/parts_choice_horizontal_padding"
+    android:paddingTop="@dimen/parts_choice_vertical_padding"
+    android:paddingBottom="@dimen/parts_choice_vertical_padding"
+    android:singleLine="false"
+    android:textAlignment="viewStart"
+    android:textAppearance="@style/TextAppearance.SettingsLib.BodyMedium"
+    android:textDirection="locale" />

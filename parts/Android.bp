@@ -22,6 +22,10 @@ android_app {
     overrides: ["MusicFX"],
     static_libs: [
         "co.aospa.resources",
+        "SettingsLibCollapsingToolbarBaseActivity",
+        "SettingsLibFooterPreference",
+        "SettingsLibMainSwitchPreference",
+        "SettingsLibSettingsTheme",
         "vendor.xiaomi.hardware.fingerprintextension-V1.0-java",
         "vendor.xiaomi.hw.touchfeature-V1.0-java"
     ],

@@ -7,8 +7,10 @@ package co.aospa.xiaomiparts.gestures
 
 import android.app.SearchManager
 import android.app.StatusBarManager
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
 import android.media.AudioManager
 import android.os.Bundle
@@ -111,16 +113,26 @@ class GestureActionHandler private constructor(private val context: Context) {
     private fun launchCamera() {
         dlog(TAG, "launchCamera")
         vibrate()
-        context.startActivity(
-            Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        )
+        try {
+            context.startActivity(
+                Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
+        } catch (e: ActivityNotFoundException) {
+            Log.e(TAG, "Unable to launch camera", e)
+        }
     }
 
     private fun toggleFlashlight() {
         dlog(TAG, "toggleFlashlight: torchOn=$torchOn")
         vibrate()
-        cameraManager.setTorchMode(REAR_CAMERA_ID, !torchOn)
+        try {
+            cameraManager.setTorchMode(REAR_CAMERA_ID, !torchOn)
+        } catch (e: CameraAccessException) {
+            Log.e(TAG, "Unable to toggle flashlight", e)
+        } catch (e: IllegalArgumentException) {
+            Log.e(TAG, "Flashlight is unavailable", e)
+        }
     }
 
     private fun toggleRingerMode(ringerMode: Int) {

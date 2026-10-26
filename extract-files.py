@@ -15,7 +15,6 @@ from extract_utils.main import ExtractUtils, ExtractUtilsModule
 namespace_imports = [
     'device/xiaomi/sm8450-common',
     'hardware/xiaomi',
-    'vendor/qcom/common/vendor/adreno/s',
     'vendor/qcom/common/vendor/display/5.10',
     'vendor/qcom/common/vendor/media/5.10',
     'vendor/qcom/common/vendor/perf',
@@ -60,6 +59,7 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.qti.imsrtpservice@3.0',
         'vendor.qti.ims.*',
         'vendor.qti.latency*',
+        'vendor.qti.qspmhal@1.0',
         'vendor.xiaomi.hardware.campostproc@1.0',
         'vendor.xiaomi.hardware.displayfeature@1.0',
     ): lib_fixup_vendor_suffix,

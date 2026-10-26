@@ -343,6 +343,9 @@ vendor/etc/media_profiles_ukee.xml
 vendor/etc/media_taro/video_system_specs.json
 vendor/etc/media_ukee/video_system_specs.json
 
+# Media (Dolby software processing)
+vendor/lib64/soundfx/libswdap.so
+
 # Media (Dolby Audio) - from nuwa OS1.0.12.0.UMBMIXM
 vendor/bin/hw/vendor.dolby.hardware.dms@2.0-service|a3f593de5fa48113bdc07f9b9b013b333830425d
 vendor/bin/hw/vendor.dolby.media.c2@1.0-service|4a88666d7f072ce6ba4147198fe3aee1eebf1481

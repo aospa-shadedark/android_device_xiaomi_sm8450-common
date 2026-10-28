@@ -1,0 +1,2 @@
+# WFD property access on user builds
+get_prop(system_server, vendor_wfd_sys_prop)

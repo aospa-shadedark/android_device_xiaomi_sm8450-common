@@ -27,5 +27,8 @@ vendor.gfx.perf_hint                                  u:object_r:vendor_public_v
 persist.vendor.sys.pay.                               u:object_r:vendor_mlipay_prop:s0
 persist.vendor.sys.provision.status                   u:object_r:vendor_mlipay_prop:s0
 
+# OEM
+ro.vendor.oem.                                        u:object_r:vendor_oem_prop:s0
+
 # Thermal
 vendor.sys.thermal.                                   u:object_r:vendor_thermal_prop:s0

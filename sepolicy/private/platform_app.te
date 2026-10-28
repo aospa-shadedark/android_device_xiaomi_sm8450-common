@@ -1,0 +1,2 @@
+# Bluetooth LE Audio
+get_prop(platform_app, bluetooth_lea_prop)

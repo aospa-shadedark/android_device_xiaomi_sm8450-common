@@ -1,0 +1,2 @@
+# QESD HAL
+allow vendor_hal_qesdhal_default vendor_hal_qesdhal_hwservice:hwservice_manager { add find };

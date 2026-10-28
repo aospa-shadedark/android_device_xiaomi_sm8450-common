@@ -1,0 +1,2 @@
+# Suppress harmless perf HAL find denials from privileged apps (e.g. Google Dialer BoostFramework)
+dontaudit priv_app vendor_hal_perf2_service:service_manager find;

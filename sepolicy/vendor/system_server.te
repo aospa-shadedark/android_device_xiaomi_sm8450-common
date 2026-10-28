@@ -3,6 +3,8 @@ allow system_server vendor_sysfs_graphics:file rw_file_perms;
 
 binder_call(system_server, vendor_hal_citsensorservice_xiaomi_default)
 
+dontaudit system_server vendor_hal_snapx_service:service_manager find;
+
 # OEM Serial & IMEI
 get_prop(system_server, vendor_oem_prop)
 

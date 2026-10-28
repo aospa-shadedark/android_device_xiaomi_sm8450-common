@@ -184,13 +184,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.sensor.pickup=xiaomi.sensor.pickup \
     ro.sensor.pickup.lower.value=2 \
-    ro.sensor.proximity?=true
+    ro.sensor.proximity?=true \
+    persist.data.df.agg.dl_pkt=10 \
+    persist.data.df.agg.dl_size=4096 \
+    persist.vendor.data.mode=concurrent
 
 # DPM
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.dpm.vndr.feature=1 \
     persist.vendor.dpm.vndr.halservice.enable=1 \
-    persist.vendor.dpm.vndr.idletimer.mode=default
+    persist.vendor.dpm.vndr.idletimer.mode=default \
+    persist.vendor.dpm.vndr.tcm=2
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -378,7 +382,7 @@ TARGET_COMMON_QTI_COMPONENTS := \
 # Radio
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.data.iwlan.enable=true \
-    persist.vendor.radio.add_power_save=1 \
+    persist.vendor.radio.add_power_save=0 \
     persist.vendor.radio.dynamic_sar=1 \
     persist.vendor.radio.redir_party_num=0 \
     ro.vendor.radio.build_profile=v-stable

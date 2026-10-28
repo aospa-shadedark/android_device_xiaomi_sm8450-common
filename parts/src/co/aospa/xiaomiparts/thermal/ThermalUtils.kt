@@ -245,7 +245,7 @@ private constructor(
         private const val THERMAL_ENABLED = "thermal_enabled"
 
         private const val THERMAL_SCONFIG = "/sys/class/thermal/thermal_message/sconfig"
-        private const val THERMAL_STATE_OFF = "20" // thermal-mgame.conf
+        private const val THERMAL_STATE_OFF = "0" // thermal-normal.conf
 
         // Empty value to store if shared preference is null
         private val DEFAULT_VALUE = ThermalState.values().map { it.prefix }.joinToString(":")
